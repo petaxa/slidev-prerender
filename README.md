@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/slidev-prerender"><img src="https://img.shields.io/npm/v/slidev-prerender.svg" alt="npm version"></a>
   <a href="https://www.npmjs.com/package/slidev-prerender"><img src="https://img.shields.io/npm/dm/slidev-prerender.svg" alt="npm downloads"></a>
-  <a href="https://github.com/slidev-prerender/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/slidev-prerender.svg" alt="license"></a>
+  <a href="https://github.com/petaxa/slidev-prerender/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"></a>
 </p>
 
 <p align="center">
