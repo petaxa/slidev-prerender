@@ -2,6 +2,7 @@ import path from "node:path";
 import fs from "node:fs/promises";
 
 export async function copyDir(src: string, dst: string): Promise<void> {
+  await fs.access(src);
   await fs.mkdir(dst, { recursive: true });
   for (const e of await fs.readdir(src, { withFileTypes: true })) {
     const s = path.join(src, e.name);

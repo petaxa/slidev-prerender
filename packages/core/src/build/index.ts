@@ -20,12 +20,10 @@ export async function run() {
 
   await removeDist(outDir);
 
-  const assetsPath = path.join(slidevDist, "assets");
   try {
-    await fs.access(assetsPath);
-    await copyDir(assetsPath, path.join(outDir, "assets"));
+    await copyDir(slidevDist, outDir);
   } catch {
-    console.warn(`Assets directory not found: ${assetsPath}, skipping...`);
+    console.warn(`Assets directory not found: ${slidevDist}, skipping...`);
   }
 
   const { origin, close: serverClose } = await serveDist(slidevDist, port);

@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "build:ssg": "node scripts/ssg.js",
     "dev": "slidev --open",
     "export": "slidev export",
-    "preview:ssg": "serve dist-prerender",
+    "preview:prerender": "serve dist-prerender",
     "prerender": "slidev-prerender"
   },
   "dependencies": {

@@ -2,7 +2,7 @@ import { defineConfig } from "slidev-prerender";
 
 export default defineConfig({
   slidevDist: "./dist",
-  outDir: "./dist-prerender-other",
+  outDir: "./dist-prerender",
   pages: [
     {
       fileName: "1",
