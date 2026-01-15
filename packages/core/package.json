@@ -1,0 +1,43 @@
+{
+  "name": "slidev-prerender",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "",
+  "author": "petaxa <soccer.i_y@icloud.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/petaxa/slidev-prerender/packages/core#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petaxa/slidev-prerender.git"
+  },
+  "bugs": {
+    "url": "https://github.com/petaxa/slidev-prerender/issues"
+  },
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "bin": {
+    "slidev-prerender": "./bin/slidev-prerender.mjs"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.57.0",
+    "markdown-it": "^14.1.0",
+    "unhead": "^2.1.1",
+    "sirv": "^3.0.2"
+  }
+}

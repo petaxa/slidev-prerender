@@ -1,0 +1,23 @@
+{
+  "name": "slidev",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "build:ssg": "node scripts/ssg.js",
+    "dev": "slidev --open",
+    "export": "slidev export",
+    "preview:ssg": "serve dist-prerender",
+    "prerender": "slidev-prerender"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.11.1",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.26",
+    "slidev-prerender": "workspace:*"
+  },
+  "devDependencies": {
+    "serve": "^14.2.5"
+  }
+}
