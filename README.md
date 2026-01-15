@@ -68,15 +68,16 @@ export default defineConfig({
   // Output directory for pre-rendered pages
   outDir: "./dist-prerender",
 
-  // Port to use for the local server during rendering (default: 3030)
-  port: 3030,
+  // Port to use for the local server during rendering (default: 4173)
+  port: 4173,
 
   // Configuration for individual pages
   pages: [
     {
-      id: "1",
+      fileName: "1",
       meta: {
-        fileName: "Introduction - My Presentation",
+        title: "Welcome to My Presentation",
+        description: "An introduction to the main topics",
         seoMeta: {
           ogTitle: "Welcome to My Presentation",
           ogDescription: "An introduction to the main topics",
@@ -86,9 +87,10 @@ export default defineConfig({
       },
     },
     {
-      id: "2",
+      fileName: "2",
       meta: {
-        fileName: "Key Concepts",
+        title: "Understanding the Key Concepts",
+        description: "Deep dive into the core ideas",
         seoMeta: {
           ogTitle: "Understanding the Key Concepts",
           ogDescription: "Deep dive into the core ideas",
@@ -108,22 +110,29 @@ export default defineConfig({
 | ------------ | --------------- | -------------------- | -------------------------------------------- |
 | `slidevDist` | `string`        | `"./dist"`           | Path to your Slidev build output directory   |
 | `outDir`     | `string`        | `"./dist-prerender"` | Output directory for pre-rendered pages      |
-| `port`       | `number`        | `3030`               | Port for the local server during rendering   |
+| `port`       | `number`        | `4173`               | Port for the local server during rendering   |
 | `pages`      | `PageConfig[]`  | `[]`                 | Configuration for individual slides          |
 
 #### `PageConfig`
 
-| Option | Type               | Description                                       |
-| ------ | ------------------ | ------------------------------------------------- |
-| `id`   | `string`           | Slide number or identifier (e.g., "1", "2", "3") |
-| `meta` | `BuildHeadOptions` | Metadata configuration for the slide              |
+| Option     | Type               | Description                                                  |
+| ---------- | ------------------ | ------------------------------------------------------------ |
+| `fileName` | `string`           | Slide file name without extension (e.g., "1", "2", "3")      |
+| `meta`     | `BuildHeadOptions` | Metadata configuration for the slide (optional)              |
 
 #### `BuildHeadOptions`
 
-| Option     | Type      | Description                          |
-| ---------- | --------- | ------------------------------------ |
-| `title`    | `string`  | Page title (appears in browser tab)  |
-| `seoMeta`  | `SEOMeta` | SEO and social media metadata        |
+| Option        | Type               | Description                                      |
+| ------------- | ------------------ | ------------------------------------------------ |
+| `lang`        | `string`           | Language attribute for the HTML element          |
+| `title`       | `string`           | Page title (appears in browser tab)              |
+| `description` | `string`           | Meta description for the page                    |
+| `canonicalUrl`| `string`           | Canonical URL for the page                       |
+| `ogImage`     | `string`           | Default Open Graph image URL                     |
+| `twitterCard` | `string`           | Twitter Card type (e.g., "summary_large_image")  |
+| `favicon`     | `string`           | Favicon URL                                      |
+| `webFonts`    | `ResolvableLink[]` | Web font links                                   |
+| `seoMeta`     | `SEOMeta`          | SEO and social media metadata (optional)         |
 
 #### `SEOMeta`
 
@@ -133,10 +142,11 @@ export default defineConfig({
 | `ogDescription`       | `string` | Open Graph description                            |
 | `ogImage`             | `string` | Open Graph image URL                              |
 | `ogUrl`               | `string` | Open Graph URL                                    |
-| `twitterCard`         | `string` | Twitter Card type (e.g., "summary_large_image")  |
+| `twitterCard`         | `string` | Twitter Card type (e.g., "summary_large_image")   |
 | `twitterTitle`        | `string` | Twitter title                                     |
 | `twitterDescription`  | `string` | Twitter description                               |
 | `twitterImage`        | `string` | Twitter image URL                                 |
+| `twitterUrl`          | `string` | Twitter URL                                       |
 
 ## 🌐 Deployment
 
