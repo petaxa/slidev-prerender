@@ -6,6 +6,7 @@
     "build": "slidev build",
     "dev": "slidev --open",
     "export": "slidev export",
+    "preview": "serve dist",
     "preview:prerender": "serve dist-prerender",
     "prerender": "slidev-prerender"
   },
