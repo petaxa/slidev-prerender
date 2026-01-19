@@ -1,3 +1,11 @@
 packages:
   - packages/*
   - playgrounds/*
+catalogs:
+  playground:
+    "@slidev/cli": "^52.11.3"
+    "@slidev/theme-default": "latest"
+    "@slidev/theme-seriph": "latest"
+    "vue": "^3.5.26"
+    "serve": "^14.2.5"
+

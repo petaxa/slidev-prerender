@@ -1,0 +1,27 @@
+import { defineConfig } from "slidev-prerender";
+
+export default defineConfig({
+  slidevDist: "./dist",
+  outDir: "./dist-prerender",
+  pages: [
+    {
+      fileName: "1",
+      meta: {
+        title: "いちぺーじめ",
+        seoMeta: {
+          ogTitle: "PAGE ONE!",
+        },
+      },
+    },
+    {
+      fileName: "2",
+      meta: {
+        title: "にぺーじめ",
+        seoMeta: {
+          ogTitle: "PAGE TWO!",
+        },
+      },
+    },
+  ],
+  port: 3030,
+});
