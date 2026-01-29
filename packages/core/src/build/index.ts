@@ -27,7 +27,6 @@ export async function build() {
     log.fatal(`Slidev dist directory not found: ${slidevDist}`);
     log.fatal(`Run: slidev build`);
 
-    // NOTE: exitしたほうがよいかもしれないので検討
     throw new Error(`Slidev dist directory not found: ${slidevDist}`);
   }
 
