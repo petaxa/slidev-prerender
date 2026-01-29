@@ -11,7 +11,7 @@ export async function removeDist(outDir: string): Promise<void> {
 // const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 export async function serveDist(
   distPath: string,
-  port: number
+  port: number,
 ): Promise<{
   origin: string;
   close: () => Promise<void>;
@@ -24,19 +24,35 @@ export async function serveDist(
   const server = http.createServer((req, res) => serve(req, res));
 
   await new Promise<void>((resolve, reject) => {
-    server.once("error", reject);
-    server.listen(port, resolve);
+    const onError = (err: Error) => reject(err);
+    server.once("error", onError);
+    server.listen(port, () => {
+      server.off("error", onError);
+      resolve();
+    });
   });
+
+  let disposed = false;
 
   return {
     origin: `http://localhost:${port}`,
-    close: () => new Promise<void>((resolve) => server.close(() => resolve())),
+    close: async () => {
+      if (disposed) return;
+      disposed = true;
+      new Promise<void>((resolve, reject) => {
+        try {
+          server.close((err) => (err ? reject(err) : resolve()));
+        } catch (e) {
+          reject(e);
+        }
+      });
+    },
   };
 }
 
 export async function getPageHtml(
   page: Page,
-  pageUrl: string
+  pageUrl: string,
 ): Promise<string> {
   await page.goto(pageUrl, { waitUntil: "networkidle" });
 

@@ -1,3 +1,3 @@
-import { run } from "./build";
+import { build } from "./build";
 
-await run();
+await build();

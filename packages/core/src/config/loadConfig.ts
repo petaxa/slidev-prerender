@@ -3,14 +3,16 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { BuildHeadOptions } from "../build/handle-head";
 
+type Page = {
+  fileName: string;
+  meta?: BuildHeadOptions;
+};
 export type UserConfig = {
   slidevDist?: string;
   outDir?: string;
-  pages?: {
-    fileName: string;
-    meta?: BuildHeadOptions;
-  }[];
+  pages?: Page[];
   port?: number;
+  plugins?: ((html: string, currentPageConfig: Page, pageIndex: number) => void)[];
 };
 
 const CONFIG_FILE_NAMES = [
@@ -21,7 +23,7 @@ const CONFIG_FILE_NAMES = [
 ];
 
 export async function loadConfig(
-  cwd: string = process.cwd()
+  cwd: string = process.cwd(),
 ): Promise<UserConfig> {
   for (const fileName of CONFIG_FILE_NAMES) {
     const configPath = resolve(cwd, fileName);
