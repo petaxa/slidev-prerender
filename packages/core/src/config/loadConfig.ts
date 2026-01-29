@@ -2,6 +2,7 @@ import { pathToFileURL } from "node:url";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { BuildHeadOptions } from "../build/handle-head";
+import type { ConsolaInstance } from "consola";
 
 type Page = {
   fileName: string;
@@ -12,7 +13,12 @@ export type UserConfig = {
   outDir?: string;
   pages?: Page[];
   port?: number;
-  plugins?: ((html: string, currentPageConfig: Page, pageIndex: number) => void)[];
+  plugins?: ((
+    html: string,
+    currentPageConfig: Page,
+    pageIndex: number,
+    log: ConsolaInstance,
+  ) => void)[];
 };
 
 const CONFIG_FILE_NAMES = [

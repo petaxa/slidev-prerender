@@ -39,6 +39,7 @@
     "@playwright/test": "^1.57.0",
     "markdown-it": "^14.1.0",
     "unhead": "^2.1.1",
-    "sirv": "^3.0.2"
+    "sirv": "^3.0.2",
+    "consola": "^3.4.2"
   }
 }
