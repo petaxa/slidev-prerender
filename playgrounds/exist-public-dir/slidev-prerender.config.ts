@@ -5,7 +5,7 @@ export default defineConfig({
   outDir: "./dist-prerender",
   pages: [
     {
-      fileName: "1",
+      slug: "1",
       meta: {
         title: "いちぺーじめ",
         seoMeta: {
@@ -14,7 +14,7 @@ export default defineConfig({
       },
     },
     {
-      fileName: "2",
+      slug: "2",
       meta: {
         title: "にぺーじめ",
         seoMeta: {

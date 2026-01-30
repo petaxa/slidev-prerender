@@ -52,14 +52,14 @@ export async function build() {
 
     log.start("Rendering pages...");
     for (const [i, pageConfig] of pages.entries()) {
-      log.debug(`Render [${i + 1}/${pages.length}]: ${pageConfig.fileName}`);
+      log.debug(`Render [${i + 1}/${pages.length}]: ${pageConfig.slug}`);
       const originalHtml = await getPageHtml(
         page,
-        `${origin}/${pageConfig.fileName}`,
+        `${origin}/${pageConfig.slug}`,
       );
 
       const head: BuildHeadOptions = pageConfig.meta ?? {
-        title: `ページ${pageConfig.fileName}`,
+        title: `ページ${pageConfig.slug}`,
       };
       const html = await applyHead(originalHtml, head);
 
@@ -69,7 +69,7 @@ export async function build() {
       });
 
       await fs.writeFile(
-        path.join(outDir, `${pageConfig.fileName}.html`),
+        path.join(outDir, `${pageConfig.slug}.html`),
         html,
       );
       generatedPageCount++;

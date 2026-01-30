@@ -74,7 +74,7 @@ export default defineConfig({
   // Configuration for individual pages
   pages: [
     {
-      fileName: "1",
+      slug: "1",
       meta: {
         title: "Welcome to My Presentation",
         description: "An introduction to the main topics",
@@ -87,7 +87,7 @@ export default defineConfig({
       },
     },
     {
-      fileName: "2",
+      slug: "2",
       meta: {
         title: "Understanding the Key Concepts",
         description: "Deep dive into the core ideas",
@@ -117,7 +117,7 @@ export default defineConfig({
 
 | Option     | Type               | Description                                                  |
 | ---------- | ------------------ | ------------------------------------------------------------ |
-| `fileName` | `string`           | Slide file name without extension (e.g., "1", "2", "3")      |
+| `slug`     | `string`           | Slide file name without extension (e.g., "1", "2", "3")      |
 | `meta`     | `BuildHeadOptions` | Metadata configuration for the slide (optional)              |
 
 #### `BuildHeadOptions`

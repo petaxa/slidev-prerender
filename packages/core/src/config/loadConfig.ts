@@ -5,7 +5,7 @@ import type { BuildHeadOptions } from "../build/handle-head";
 import type { ConsolaInstance } from "consola";
 
 type Page = {
-  fileName: string;
+  slug: string;
   meta?: BuildHeadOptions;
 };
 export type UserConfig = {
