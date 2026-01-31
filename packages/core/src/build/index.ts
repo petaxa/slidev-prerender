@@ -58,10 +58,8 @@ export async function build() {
         `${origin}/${pageConfig.slug}`,
       );
 
-      const head: BuildHeadOptions = pageConfig.meta ?? {
-        title: `ページ${pageConfig.slug}`,
-      };
-      const html = await applyHead(originalHtml, head);
+      const head: BuildHeadOptions = pageConfig.meta ?? {};
+      const html = await applyHead(originalHtml, pageConfig.slug, head);
 
       const processedHtml = await plugins.reduce(
         async (prevPromise, plugin) => {

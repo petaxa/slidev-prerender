@@ -11,19 +11,20 @@ function toAttrValue(unsafe: unknown) {
 
 export type BuildHeadOptions = {
   lang?: string;
-  title: string;
-  description?: string | null;
-  canonicalUrl?: string | null;
-  ogImage?: string | null;
-  twitterCard?: string | null;
-  favicon?: string | null;
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  twitterCard?: string;
+  favicon?: string;
   webFonts?: ResolvableLink[];
   seoMeta?: Partial<SeoMeta>;
 };
 
 export async function applyHead(
   html: string,
-  opt: BuildHeadOptions
+  slug: string,
+  opt: BuildHeadOptions,
 ): Promise<string> {
   // 1) まず「既存HTMLに書かれているhead」をunhead入力として回収
   const extracted = parseHtmlForUnheadExtraction(html).input;
@@ -35,7 +36,7 @@ export async function applyHead(
       extracted,
       {
         htmlAttrs: opt.lang ? { lang: opt.lang } : undefined,
-        title: opt.title,
+        title: opt.title ?? slug,
 
         link: [
           opt.favicon ? { rel: "icon", href: opt.favicon } : null,
