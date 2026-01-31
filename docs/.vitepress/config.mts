@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/slidev-prerender/",
   title: "Slidev Prerender",
   description: "Pre-render your Slidev presentations",
   themeConfig: {
