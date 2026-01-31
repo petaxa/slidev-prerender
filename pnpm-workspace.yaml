@@ -1,6 +1,7 @@
 packages:
   - packages/*
   - playgrounds/*
+  - docs/
 catalogs:
   playground:
     "@slidev/cli": "^52.11.3"

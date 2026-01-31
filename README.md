@@ -52,7 +52,6 @@ By default, this will:
 
 - Read from `./dist` (your Slidev build output)
 - Generate pre-rendered pages in `./dist-prerender`
-- Create one HTML file per slide (1.html, 2.html, 3.html, etc.)
 
 ## ⚙️ Configuration
 
@@ -112,12 +111,13 @@ export default defineConfig({
 | `outDir`     | `string`        | `"./dist-prerender"` | Output directory for pre-rendered pages      |
 | `port`       | `number`        | `4173`               | Port for the local server during rendering   |
 | `pages`      | `PageConfig[]`  | `[]`                 | Configuration for individual slides          |
+| `plugins`    | `PluginFunction[]` | `[]`              | Array of plugins to transform HTML output    |
 
 #### `PageConfig`
 
 | Option     | Type               | Description                                                  |
 | ---------- | ------------------ | ------------------------------------------------------------ |
-| `slug`     | `string`           | Slide file name without extension (e.g., "1", "2", "3")      |
+| `slug`     | `string` (required) | Slide file name without extension (e.g., "1", "2", "3")      |
 | `meta`     | `BuildHeadOptions` | Metadata configuration for the slide (optional)              |
 
 #### `BuildHeadOptions`
@@ -147,6 +147,56 @@ export default defineConfig({
 | `twitterDescription`  | `string` | Twitter description                               |
 | `twitterImage`        | `string` | Twitter image URL                                 |
 | `twitterUrl`          | `string` | Twitter URL                                       |
+
+### Plugins
+
+Plugins allow you to transform the generated HTML for each slide. You can use plugins to inject custom scripts, modify content, or add analytics tracking.
+
+```typescript
+import { defineConfig } from "slidev-prerender";
+
+export default defineConfig({
+  plugins: [
+    // Example: Add Google Analytics
+    async (html, pageConfig, pageIndex, logger) => {
+      logger.info(`Processing slide ${pageIndex + 1}: ${pageConfig.slug}`);
+
+      const analyticsScript = `
+        <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'GA_MEASUREMENT_ID');
+        </script>
+      `;
+
+      return html.replace('</head>', `${analyticsScript}</head>`);
+    },
+
+    // Example: Add custom meta tag
+    (html) => {
+      return html.replace(
+        '</head>',
+        '<meta name="custom-tag" content="custom-value" /></head>'
+      );
+    },
+  ],
+});
+```
+
+#### Plugin Function Signature
+
+```typescript
+type PluginFunction = (
+  html: string,           // Current HTML content
+  pageConfig: PageConfig, // Configuration for the current page
+  pageIndex: number,      // Zero-based index of the page
+  logger: ConsolaInstance // Logger instance for output
+) => string | Promise<string>;
+```
+
+For more details on plugins, see the [Plugins Guide](./docs/guide/plugins.md) and [Plugins Reference](./docs/reference/plugins.md).
 
 ## 🌐 Deployment
 
