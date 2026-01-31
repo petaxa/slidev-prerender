@@ -1,7 +1,7 @@
 {
   "name": "slidev-prerender",
   "type": "module",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-beta.0",
   "description": "",
   "author": "petaxa <soccer.i_y@icloud.com>",
   "license": "MIT",
