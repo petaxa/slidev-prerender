@@ -1,8 +1,8 @@
 import { loadConfig, type UserConfig } from "../config/loadConfig";
 
 const DEFAULT_CONFIG: Required<UserConfig> = {
-  slidevDist: "dist",
-  outDir: "dist-prerender",
+  slidevDist: "./dist",
+  outDir: "./dist-prerender",
   pages: [],
   port: 4173,
   plugins: [],
