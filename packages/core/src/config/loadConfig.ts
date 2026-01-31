@@ -18,7 +18,7 @@ export type UserConfig = {
     currentPageConfig: Page,
     pageIndex: number,
     log: ConsolaInstance,
-  ) => void)[];
+  ) => string | Promise<string>)[];
 };
 
 const CONFIG_FILE_NAMES = [

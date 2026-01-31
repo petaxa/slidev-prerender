@@ -63,14 +63,18 @@ export async function build() {
       };
       const html = await applyHead(originalHtml, head);
 
-      plugins.forEach((plugin, i) => {
-        const pluginLog = log.withTag(`plugin-${i}`);
-        plugin(html, pageConfig, i, pluginLog);
-      });
+      const processedHtml = await plugins.reduce(
+        async (prevPromise, plugin) => {
+          const pluginLog = log.withTag(`plugin-${i}`);
+          const prev = await prevPromise;
+          return plugin(prev, pageConfig, i, pluginLog);
+        },
+        Promise.resolve(html),
+      );
 
       await fs.writeFile(
         path.join(outDir, `${pageConfig.slug}.html`),
-        html,
+        processedHtml,
       );
       generatedPageCount++;
     }
